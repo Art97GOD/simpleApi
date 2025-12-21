@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  # ===========================
+  # Postgres
+  # ===========================
+  db:
+    image: postgres:15
+    container_name: shop_db
+    restart: always
+    environment:
+      POSTGRES_USER: shop_user
+      POSTGRES_PASSWORD: shop_pass123
+      POSTGRES_DB: shopdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - shop_data:/var/lib/postgresql/data
+
+  # ===========================
+  # pgAdmin
+  # ===========================
+  pgadmin:
+    image: dpage/pgadmin4:7
+    container_name: shop_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+# ===========================
+# Volumes
+# ===========================
+volumes:
+  shop_data:
