@@ -6,12 +6,12 @@ services:
   # ===========================
   db:
     image: postgres:15
-    container_name: shop_db
+    container_name: services_db
     restart: always
     environment:
-      POSTGRES_USER: shop_user
-      POSTGRES_PASSWORD: shop_pass123
-      POSTGRES_DB: shopdb
+      POSTGRES_USER: services_user
+      POSTGRES_PASSWORD: services_pass123
+      POSTGRES_DB: servicesdb
     ports:
       - "5432:5432"
     volumes:
@@ -22,7 +22,7 @@ services:
   # ===========================
   pgadmin:
     image: dpage/pgadmin4:7
-    container_name: shop_pgadmin
+    container_name: services_pgadmin
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
